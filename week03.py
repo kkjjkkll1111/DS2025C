@@ -1,15 +1,7 @@
-import  array
-def move_zeros(l):
-    zero_index = 0
-    for i in range(len(l)):
-        n = l[i]
-        if n != 0:
-            l[zero_index] = n
-            if zero_index != i:
-                l[i] = 0
-            zero_index += 1
-    return l
+groups = ['HOT', 'Seventeen', 'Black pink', 'NJZ']
+# ratings = [1, 2, 4, 3, 100]
+ratings = [1, 2, 4, 3]
 
-l = [99, 0, -7, 0, 16]
-move_zeros(l)
-print(l)
+group_rating = list(zip(groups, ratings))
+# zip : 리스트들의 같은 인덱스의 값을 튜플로 묶어서 반환
+print(group_rating)
