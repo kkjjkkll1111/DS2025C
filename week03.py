@@ -1,5 +1,15 @@
-import array
+import  array
+def move_zeros(l):
+    zero_index = 0
+    for i in range(len(l)):
+        n = l[i]
+        if n != 0:
+            l[zero_index] = n
+            if zero_index != i:
+                l[i] = 0
+            zero_index += 1
+    return l
 
-arr = array.array('f', [99, 0, -7, 0, 16])
-for i in range(len(arr)):
-    print(f"{arr[i]:5} {id(arr[i])}")
+l = [99, 0, -7, 0, 16]
+move_zeros(l)
+print(l)
