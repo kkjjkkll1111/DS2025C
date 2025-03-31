@@ -22,21 +22,24 @@ class LinkedList:
 
 
     def remove(self, target):
-        if self.head.data == target:
-            self.head = self.head.link
-            return
         current = self.head
+        # if self.head.data == target:
+        if current.data == target:
+            self.head = self.head.link
+            current.link = None
+            return
         previous = None
         while current:
             if current.data == target:
                 previous.link = current.link
+                current.link = None
             previous = current
             current = current.link
 
 
     def search(self, target):
         current = self.head
-        while current.link:
+        while current:
             if target == current.data:
                 return f"{target}을 찾았습니다"
             else:
