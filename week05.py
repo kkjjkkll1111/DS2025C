@@ -1,14 +1,16 @@
-s1 = list()
-print(len(s1)) #size
-s1.append("data structure") # push
-s1.append("data base") # push
-print(len(s1))
-print(s1[-1]) # peek
-print(s1)
-print(s1.pop())
-print(s1)
-print(s1.pop())
-print(s1)
-print(s1.pop()) # IndexError: pop from empty list
-print(s1)
+def is_valid_brackets(expression : str) -> bool:
+    stack = []
+    brackets = {")": "(", "}": "{","]": "["}
+    for letter in expression:
+        if letter in brackets.values():
+            stack.append(letter)
+        if letter in brackets.keys():
+            if not stack or stack.pop() != brackets[letter]:
+                return False
+    return not stack
+
+print(is_valid_brackets("([2+3])"))
+print(is_valid_brackets("(2+{3*9})"))
+print(is_valid_brackets("(2+(3*9)"))
+print(is_valid_brackets(")2+(3*9)("))
 
