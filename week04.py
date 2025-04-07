@@ -47,6 +47,17 @@ class LinkedList:
         return f"{target}은 링크드 리스트에 존재 하지 않습니다."
 
 
+    def reverse_list(self):
+        current = self.head
+        previous = None
+        while current:
+            next = current.link
+            current.link = previous
+            previous = current
+            current = next
+        self.head = previous
+
+
     def __str__(self):
         current = self.head
         out_texts = ""
@@ -61,8 +72,9 @@ ll.append(8)
 ll.append(10)
 ll.append(-9)
 print(ll)
-print(ll.search(8))
-ll.remove(10)
-ll.remove(8)
+print(ll.search(8), ll.search(-9), ll.search(10), sep = "\n")
+# ll.remove(10)
+# ll.remove(8)
+ll.reverse_list()
 print(ll)
 
