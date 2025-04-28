@@ -31,6 +31,20 @@ def insert(root, value):
             current = current.right # move
     return root
 
+def search(root, target):
+    current = root
+    while True:
+        if target == current.data:
+            return f"{target}를 찾았습니다."
+        elif target < current.data:
+            if current.left is None:
+                return f"{target}를 찾지 못했습니다."
+            current = current.left
+        else:
+            if current.right is None:
+                return f"{target}를 찾지 못했습니다."
+            current = current.right
+
 
 if __name__ == "__main__":
     numbers  = [10, 15, 8, 3, 9]
@@ -44,20 +58,7 @@ if __name__ == "__main__":
 print("BST 구성 완료")
 
 post_order(root)
+print()
+print(search(root, 10))
 
-# find_number = int(input())
-# current = root
-# while True:
-#     if find_number == current.data:
-#         print(f"{find_number}를 찾았습니다.")
-#         break
-#     elif find_number < current.data:
-#         if current.left is None:
-#             print(f"{find_number}를 찾지 못했습니다.")
-#             break
-#         current = current.left
-#     else:
-#         if current.right is None:
-#             print(f"{find_number}를 찾지 못했습니다.")
-#             break
-#         current = current.right
+
