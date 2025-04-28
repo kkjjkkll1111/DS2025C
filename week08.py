@@ -37,4 +37,22 @@ if __name__ == "__main__":
 
 
 print("BST 구성 완료")
+
 post_order(root)
+
+find_number = int(input())
+current = root
+while True:
+    if find_number == current.data:
+        print(f"{find_number}를 찾았습니다.")
+        break
+    elif find_number < current.data:
+        if current.left is None:
+            print(f"{find_number}를 찾지 못했습니다.")
+            break
+        current = current.left
+    else:
+        if current.right is None:
+            print(f"{find_number}를 찾지 못했습니다.")
+            break
+        current = current.right
