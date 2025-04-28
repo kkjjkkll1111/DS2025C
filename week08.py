@@ -5,25 +5,22 @@ class TreeNode:
         self.data = None
 
 def post_order(node):
-    if node == None:
-        return
-    post_order(node.left)
-    post_order(node.right)
-    print(node.data, end=' - ')
+    if node:
+        post_order(node.left)
+        post_order(node.right)
+        print(node.data, end=' - ')
 
 def in_order(node):
-    if node == None:
-        return
-    in_order(node.left)
-    print(node.data, end=' - ')
-    in_order(node.right)
+    if node:
+        in_order(node.left)
+        print(node.data, end=' - ')
+        in_order(node.right)
 
 def pre_order(node):
-    if node == None:
-        return
-    print(node.data, end=' - ')
-    pre_order(node.left)
-    pre_order(node.right)
+    if node:
+        print(node.data, end=' - ')
+        pre_order(node.left)
+        pre_order(node.right)
 
 
 node1 = TreeNode()
