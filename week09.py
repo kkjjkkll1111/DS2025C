@@ -1,10 +1,25 @@
 #check queue is full
 def is_queue_full() -> bool:
-    global SIZE, front, rear
-    if rear == SIZE-1:
-        return True
+    global SIZE, rear, front
+
+    # Case 1: If the rear is not at the last index
+    if rear != SIZE - 1:
+        return False # queue is not full
+
+    # Case 2: If rear is at the last index and front is -1,
+    elif rear == SIZE - 1 and front == -1:
+        return True # queue is truly full
+
+    # Case 3: (some elements were dequeued),
     else:
-        return False
+        # Shift each element one position to the left
+        for i in range(front + 1, SIZE):
+            queue[i - 1] = queue[i]
+            queue[i] = None
+        # Shift front and rear one position to the left
+        front = front - 1
+        rear = rear - 1
+        return False # queue is not full
 
 # check queue is empty
 def is_queue_empty() -> bool:
