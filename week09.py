@@ -1,85 +1,46 @@
-#check queue is full
-def is_queue_full() -> bool:
-    global SIZE, rear, front
+class Graph:
+    def __init__(self, size):
+        self.SIZE = size
+        self.graph = [[0 for _ in range(size)] for _ in range(size)]
 
-    # Case 1: If the rear is not at the last index
-    if rear != SIZE - 1:
-        return False # queue is not full
+G1 = Graph(4)
+G3 = Graph(4)
+G_self = Graph(4)
 
-    # Case 2: If rear is at the last index and front is -1,
-    elif rear == SIZE - 1 and front == -1:
-        return True # queue is truly full
+# 0 == A, 1 == B, 2 == C, 3 == D
+G1.graph[0][1] = 1; G1.graph[0][2] = 1; G1.graph[0][3] = 1  # AB, AC, AD
+G1.graph[1][0] = 1; G1.graph[1][2] = 1 # BA, BC
+G1.graph[2][0] = 1; G1.graph[2][1] = 1; G1.graph[2][3] = 1 #CA, CB, CD
+G1.graph[3][0] = 1; G1.graph[3][2] = 1 # DA, DC
 
-    # Case 3: (some elements were dequeued),
-    else:
-        # Shift each element one position to the left
-        for i in range(front + 1, SIZE):
-            queue[i - 1] = queue[i]
-            queue[i] = None
-        # Shift front and rear one position to the left
-        front = front - 1
-        rear = rear - 1
-        return False # queue is not full
+print("G1 Undirected Graph")
+for row in range(G1.SIZE):
+    for col in range(G1.SIZE):
+        print(G1.graph[row][col], end=' ')
+    print()
 
-# check queue is empty
-def is_queue_empty() -> bool:
-    global SIZE, front, rear
-    if front == rear:
-        return True
-    else:
-        return False
+print()
 
-# enqueue method
-def en_queue(data):
-    global rear
-    if is_queue_full(): #check queue is full
-        print("queue is full")
-        return None
-    else:
-        rear = rear + 1
-        queue[rear] = data
+# 0 == A, 1 == B, 2 == C, 3 == D
+G3.graph[0][1] = 1; G3.graph[0][2] = 1 # BA, BC
+G3.graph[3][0] = 1; G3.graph[3][2] = 1 # DA, DC
 
-# dequeue method
-def de_queue():
-    global front
-    if is_queue_empty(): #check queue is full
-        print("queue is empty")
-        return None
-    else:
-        front += 1
-        data = queue[front]
-        queue[front] = None
-        return data
+print("G3 Directed Graph")
+for row in range(G3.SIZE):
+    for col in range(G3.SIZE):
+        print(G3.graph[row][col], end=' ')
+    print()
 
-#peek method
-def peek():
-    global front
-    if is_queue_empty(): #check queue is full
-        print("queue is empty")
-        return None
-    else:
-        return queue[front + 1]
+print()
 
+# 0 == A, 1 == B, 2 == C, 3 == D
+G_self.graph[0][3] = 1 # AC
+G_self.graph[1][2] = 1; G_self.graph[1][3] = 1 # BC, BD
+G_self.graph[2][1] = 1 # CB
+G_self.graph[3][0] = 1; G_self.graph[3][1] = 1 # DA, DB
 
-SIZE =  int(input("input queue size : "))
-queue = [None for _ in range(SIZE)]
-front = -1
-rear = -1
-
-if __name__ == "__main__":
-    while(True):
-        menu = input("enqueue(i), dequeue(e), peek(v), end(x) : ")
-        if menu == 'x' or menu == 'X':
-            print("program end")
-            break
-        elif menu == 'i' or menu == 'I':
-            en_queue(input("input data : "))
-            print(queue)
-        elif menu == 'e' or menu == 'E':
-            print(f"output data {de_queue()}")
-            print(queue)
-        elif menu == 'v' or menu == 'V':
-            print(f"cheak data {peek()}")
-            print(queue)
-        else:
-            print(f"{menu} is undefinded, please check your select")
+print("G_self Undirected Graph")
+for row in range(G_self.SIZE):
+    for col in range(G_self.SIZE):
+        print(G_self.graph[row][col], end=' ')
+    print()
